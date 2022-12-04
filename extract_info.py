@@ -53,6 +53,7 @@ def grades_table_creator(file):
 
     final_grades_fixed = []
     for i in grades_fixed:
+        i = re.sub(',','.',i)
         try:
             if i == 'nan' or float(i) < 5:
                 final_grades_fixed.append(0)
