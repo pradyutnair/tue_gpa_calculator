@@ -18,7 +18,7 @@ def grades_table_creator(file):
 
 
     def fix_credits(column):
-        column = column.astype("str")
+        column = column.astype(str)
         pattern = r"([^\d|\.])"
         creds_2 = []
         for i in column:
@@ -35,8 +35,8 @@ def grades_table_creator(file):
     df.credits = df.credits + df.credits_duplicated
     df = df.drop('credits_duplicated', axis=1)
 
-    dates = df.date.astype("str")
-    final_grades = df.final_grades.astype("str")
+    dates = df.date.astype(str)
+    final_grades = df.final_grades.astype(str)
 
     date_pattern = r"(\d{2}-\d{2}-\d{4})"
     grade_pattern = r"(\s\d+\.\d)"
@@ -65,11 +65,11 @@ def grades_table_creator(file):
             final_grades_fixed.append(0)
 
     df.final_grades = df.final_grades.replace(np.nan, 0)
-    df.final_grades = df.final_grades.astype("float") + np.array(final_grades_fixed)
+    df.final_grades = df.final_grades.astype(float) + np.array(final_grades_fixed)
     df.date = date_fixed
 
     course_pattern = r"((2|\w){4,}\d)"
-    df.course_code = df.course_code.astype("str")
+    df.course_code = df.course_code.astype(str)
     course_codes = df.course_code
     course_code_fixed = []
     course_name_fixed = []
