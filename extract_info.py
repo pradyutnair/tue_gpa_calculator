@@ -161,4 +161,4 @@ def grades_table_creator(file):
     df.course_code = course_code_fixed
     df.course_name = df.course_name.fillna('')
     df.course_name = df.course_name + np.array(course_name_fixed)
-    return df
+    return df[df.credits>0]
