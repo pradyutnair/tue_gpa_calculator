@@ -5,7 +5,6 @@ import tabula
 import warnings
 import regex as re
 import fitz
-#import PyPDF2
 
 warnings.filterwarnings("ignore")
 
