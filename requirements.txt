@@ -5,6 +5,6 @@ regex==2022.7.9
 streamlit-aggrid==0.3.3
 streamlit==1.11.0
 tabula_py==2.6.0
-PyMuPDF==1.21.0
+pymupdf==1.21.0
 fitz==0.0.1.dev2
 
