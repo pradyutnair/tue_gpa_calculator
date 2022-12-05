@@ -6,4 +6,4 @@ regex==2022.7.9
 streamlit==1.11.0
 tabula==1.0.5
 tabula_py==2.6.0
-streamlit-aggrid==0.2.2
+streamlit-aggrid==0.3.0
