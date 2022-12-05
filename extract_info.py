@@ -113,18 +113,9 @@ def grades_table_creator(file):
     -----------
     Preprocessed dataframe with the relevant and corrected information
     """
-    #pdfObj = open(file, 'rb')
-
-    #reader = PyPDF2.PdfFileReader(
-    #    pdfObj,
-    #    strict=True,
-    #)
-    #pages = reader.getNumPages()
-    #page_description = "3-{}".format(pages)
     pages = 0
     with fitz.open(stream=file.read(), filetype="pdf") as doc:
-        text = ""
-        for page in doc:
+        for _ in doc:
             pages += 1
     page_description = "3-{}".format(pages)
     df = tabula.read_pdf(file, pages=page_description, multiple_tables=False, columns=[0.9, 2.2, 6.1, 7, 7.7, 9])
