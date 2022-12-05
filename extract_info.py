@@ -64,7 +64,9 @@ def grades_table_creator(file):
 
         except:
             final_grades_fixed.append(0)
-
+            
+    df.final_grades = df.final_grades.str.replace(',','.')
+    df.final_grades = df.final_grades.str.replace(r"\w*", '0')
     df.final_grades = df.final_grades.replace(np.nan, 0)
     df.final_grades = df.final_grades.astype(float) + np.array(final_grades_fixed)
     df.date = date_fixed
