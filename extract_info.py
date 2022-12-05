@@ -4,7 +4,8 @@ import string
 import tabula
 import warnings
 import regex as re
-import PyPDF2
+import fitz
+#import PyPDF2
 
 warnings.filterwarnings("ignore")
 
@@ -112,15 +113,20 @@ def grades_table_creator(file):
     -----------
     Preprocessed dataframe with the relevant and corrected information
     """
-    pdfObj = open(file, 'rb')
+    #pdfObj = open(file, 'rb')
 
-    reader = PyPDF2.PdfFileReader(
-        pdfObj,
-        strict=True,
-    )
-    pages = reader.getNumPages()
+    #reader = PyPDF2.PdfFileReader(
+    #    pdfObj,
+    #    strict=True,
+    #)
+    #pages = reader.getNumPages()
+    #page_description = "3-{}".format(pages)
+    pages = 0
+    with fitz.open(stream=file.read(), filetype="pdf") as doc:
+        text = ""
+        for page in doc:
+            pages += 1
     page_description = "3-{}".format(pages)
-
     df = tabula.read_pdf(file, pages=page_description, multiple_tables=False, columns=[0.9, 2.2, 6.1, 7, 7.7, 9])
     df = pd.DataFrame(df[0])
     df = df.reset_index().T.reset_index().T
@@ -161,4 +167,4 @@ def grades_table_creator(file):
     df.course_code = course_code_fixed
     df.course_name = df.course_name.fillna('')
     df.course_name = df.course_name + np.array(course_name_fixed)
-    return df
+    return df[df.credits>0]
