@@ -147,6 +147,7 @@ def grades_table_creator(file):
             final_grades_fixed.append(0)
 
     df.final_grades = remove_words
+    df.final_grades = df.final_grades.str.replace(r"[^\d*|.]", '0').replace(np.nan, 0)
     df.final_grades = df.final_grades.astype(float).fillna(0)
 
     df.final_grades = df.final_grades + np.array(final_grades_fixed)
