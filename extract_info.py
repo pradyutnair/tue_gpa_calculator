@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore")
 
 
 def grades_table_creator(file):
-    df = tabula.read_pdf(file, pages="3-5", multiple_tables=False, columns=[0.9, 2.2, 6.1, 7, 7.7, 9])
+    df = tabula.read_pdf(file, pages="3-6", multiple_tables=False, columns=[0.9, 2.2, 6.1, 7, 7.7, 9])
     df = pd.DataFrame(df[0])
     df = df.reset_index().T.reset_index().T
     df = df.reset_index().iloc[:, 2:]
