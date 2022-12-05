@@ -45,8 +45,7 @@ def main():
         st.subheader("① Edit and select courses you want to include")
         st.write("Osiris includes all the courses in your elective packages and you probably don't want the "
                  "ones you haven't taken factoring into your GPA.")
-        st.info("💡 Hold the `Shift` (⇧) key to select multiple rows at once."
-                " Select the first and shift select the last row to select all rows!")
+        st.info("💡 Hold the `Shift` (⇧) key to select multiple rows at once.")
         st.caption("")
         gd = GridOptionsBuilder.from_dataframe(df)
         gd.configure_pagination(enabled=True)
