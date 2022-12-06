@@ -142,7 +142,7 @@ def grades_table_creator(file):
 
     remove_words = []
     pattern = r"([^\d | .])"
-    df.final_grades = df.final_grades.str.replace(',', '.')
+    #df.final_grades = df.final_grades.str.replace(',', '.')
 
     for i in df.final_grades.astype(str):
         sub = re.sub(pattern, '', i)
