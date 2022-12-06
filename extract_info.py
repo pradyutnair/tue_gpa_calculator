@@ -152,7 +152,7 @@ def grades_table_creator(file):
             else:
                 remove_words.append(float(sub))
         except:
-            final_grades_fixed.append(0)
+            remove_words.append(0)
 
     df.final_grades = remove_words
     df.final_grades = df.final_grades.astype(str).str.replace(r"[^\d*|.]", '0').replace(np.nan, 0)
