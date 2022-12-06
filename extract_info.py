@@ -123,6 +123,14 @@ def grades_table_creator(file):
     df = df.reset_index().iloc[:, 2:]
     df.columns = ['course_type', 'course_code', 'course_name', 'credits', 'credits_duplicated', 'date', 'final_grades',
                   'category']
+
+    date_pattern = r"(\d{2}-\d{2}-\d{4})"
+    for i, n in enumerate(df.credits_duplicated.astype(str)):
+        sub = re.findall(date_pattern, n)
+        if sub != []:
+            df.loc[i, 'date'] = sub[0]
+            df.loc[i, 'final_grades'] = re.sub(date_pattern, '', n)
+
     df.credits = fix_credits(df.credits)
     df.credits_duplicated = fix_credits(df.credits_duplicated)
     df.credits = df.credits + df.credits_duplicated
@@ -158,4 +166,5 @@ def grades_table_creator(file):
     df.course_code = course_code_fixed
     df.course_name = df.course_name.fillna('')
     df.course_name = df.course_name + np.array(course_name_fixed)
-    return df[df.credits>0]
+    df = df.drop(np.where(df.course_name.str.match(r".*weighting|assignment.*"))[0])
+    return df[(df.credits>0 )& (df.date != "No-Date")]
