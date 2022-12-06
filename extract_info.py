@@ -162,4 +162,4 @@ def grades_table_creator(file):
     df.course_name = df.course_name.fillna('')
     df.course_name = df.course_name + np.array(course_name_fixed)
     #df = df.drop(np.where(df.course_name.str.match(r".*weighting|assignment.*"))[0])
-    return df[(df.credits>0 )& (df.date != "No-Date")]
+    return df[(df.credits>0)]
